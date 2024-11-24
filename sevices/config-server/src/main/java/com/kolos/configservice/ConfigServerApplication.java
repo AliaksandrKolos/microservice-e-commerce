@@ -1,4 +1,4 @@
-package com.kolos.configserver;
+package com.kolos.configservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
