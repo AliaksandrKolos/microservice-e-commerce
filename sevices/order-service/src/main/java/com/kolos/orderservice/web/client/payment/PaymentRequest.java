@@ -1,22 +1,20 @@
-package com.kolos.orderservice.service.dto;
+package com.kolos.orderservice.web.client.payment;
 
 import com.kolos.orderservice.data.entity.PaymentMethod;
 import com.kolos.orderservice.web.client.customer.CustomerResponse;
-import com.kolos.orderservice.web.client.customer.PurchaseResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class OrderConfirmation {
+public class PaymentRequest {
 
-    private String orderReference;
-    private BigDecimal totalAmount;
+    private BigDecimal amount;
     private PaymentMethod paymentMethod;
+    private Integer orderId;
+    private String orderReference;
     private CustomerResponse customer;
-    private List<PurchaseResponse> products;
 
 }
