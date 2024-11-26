@@ -1,8 +1,8 @@
 package com.kolos.orderservice.service.dto;
 
 import com.kolos.orderservice.data.entity.PaymentMethod;
-import com.kolos.orderservice.web.client.CustomerResponse;
-import com.kolos.orderservice.web.client.PurchaseResponse;
+import com.kolos.orderservice.web.client.customer.CustomerResponse;
+import com.kolos.orderservice.web.client.customer.PurchaseResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

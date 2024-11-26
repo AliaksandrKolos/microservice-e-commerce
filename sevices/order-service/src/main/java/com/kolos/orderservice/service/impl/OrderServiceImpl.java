@@ -1,17 +1,19 @@
 package com.kolos.orderservice.service.impl;
 
-import com.kolos.orderservice.service.MessagePublisher;
-import com.kolos.orderservice.service.dto.OrderConfirmation;
-import com.kolos.orderservice.service.dto.PurchaseRequest;
 import com.kolos.orderservice.data.repository.OrderRepository;
+import com.kolos.orderservice.service.MessagePublisher;
 import com.kolos.orderservice.service.OrderLineService;
 import com.kolos.orderservice.service.OrderMapper;
 import com.kolos.orderservice.service.OrderService;
+import com.kolos.orderservice.service.dto.OrderConfirmation;
 import com.kolos.orderservice.service.dto.OrderLineRequest;
 import com.kolos.orderservice.service.dto.OrderRequest;
 import com.kolos.orderservice.service.dto.OrderResponse;
-import com.kolos.orderservice.web.client.CustomerClient;
-import com.kolos.orderservice.web.client.ProductClient;
+import com.kolos.orderservice.service.dto.PurchaseRequest;
+import com.kolos.orderservice.web.client.customer.CustomerClient;
+import com.kolos.orderservice.web.client.customer.ProductClient;
+import com.kolos.orderservice.web.client.payment.PaymentClient;
+import com.kolos.orderservice.web.client.payment.PaymentRequest;
 import com.kolos.orderservice.web.exception.BusinessException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,7 @@ public class OrderServiceImpl implements OrderService {
     private final MessagePublisher messagePublisher;
     private final OrderRepository orderRepository;
     private final CustomerClient customerClient;
+    private final PaymentClient paymentClient;
     private final ProductClient productClient;
     private final OrderMapper orderMapper;
 
@@ -48,8 +51,14 @@ public class OrderServiceImpl implements OrderService {
                     )
             );
         }
-
-//        todo start payment process
+        var paymentRequest = new PaymentRequest(
+                request.getAmount(),
+                request.getPaymentMethod(),
+                order.getId(),
+                order.getReference(),
+                customer
+        );
+        paymentClient.requestOrderPayment(paymentRequest);
 
         messagePublisher.sendOrderConfirmation(
                 new OrderConfirmation(
