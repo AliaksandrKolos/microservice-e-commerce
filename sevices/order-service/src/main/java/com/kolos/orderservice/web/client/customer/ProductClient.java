@@ -1,4 +1,4 @@
-package com.kolos.orderservice.web.client;
+package com.kolos.orderservice.web.client.customer;
 
 import com.kolos.orderservice.service.dto.PurchaseRequest;
 import com.kolos.orderservice.web.exception.BusinessException;

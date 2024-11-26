@@ -1,4 +1,4 @@
-package com.kolos.orderservice.web.client;
+package com.kolos.orderservice.web.client.customer;
 
 import lombok.Data;
 
