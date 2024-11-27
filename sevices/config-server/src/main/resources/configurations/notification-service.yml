@@ -1,0 +1,30 @@
+server:
+  port: 8040
+spring:
+  spring:
+    rabbitmq:
+      host: message-broker
+  data:
+    mongodb:
+      username: kolos
+      password: kolos
+      host: localhost
+      port: 27017
+      database: notification
+      authentication-database: admin
+
+  mail:
+    host: localhost
+    port: 1025
+    username: kolos
+    password: kolos
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enabled: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
