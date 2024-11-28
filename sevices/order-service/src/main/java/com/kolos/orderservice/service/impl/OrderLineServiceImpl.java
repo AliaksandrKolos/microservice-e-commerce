@@ -27,7 +27,7 @@ public class OrderLineServiceImpl implements OrderLineService {
 
     @Override
     public List<OrderLineResponse> findAllByOrderId(Integer orderId) {
-        return orderLineRepository.findBiOrderId(orderId)
+        return orderLineRepository.findByOrderId(orderId)
                 .stream()
                 .map(orderLineMapper::toOrderLineResponse)
                 .collect(Collectors.toList());
