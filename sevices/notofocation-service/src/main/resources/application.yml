@@ -3,3 +3,14 @@ spring:
     import: optional:configserver:http://localhost:8888
   application:
     name: notification-service
+
+
+rabbitmq:
+  queue:
+    order-confirmation: orderConfirmation
+    payment-notification: paymentNotification
+  exchange:
+    direct: directExchange
+  routing-key:
+      order-confirmation: order.confirmation
+      payment-notification: payment.notification

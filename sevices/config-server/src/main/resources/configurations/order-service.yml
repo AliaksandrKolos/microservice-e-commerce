@@ -2,7 +2,8 @@ server:
   port: 8070
 spring:
   rabbitmq:
-    host: message-broker
+    host: localhost
+    port: 5672
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/order
@@ -10,11 +11,11 @@ spring:
     password: root
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 application:
   config:
-    customer-url: http://localhost:8222/api/v1/customers
     payment-url: http://localhost:8222/api/v1/payments
+    customer-url: http://localhost:8222/api/v1/customers
     product-url: http://localhost:8222/api/v1/products

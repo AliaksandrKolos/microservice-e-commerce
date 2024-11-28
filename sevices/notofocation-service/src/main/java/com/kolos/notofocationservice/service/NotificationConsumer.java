@@ -25,7 +25,7 @@ public class NotificationConsumer {
     private final NotificationRepository notificationRepository;
     private final EmailService emailService;
 
-    @RabbitListener
+    @RabbitListener(queues = "paymentNotification")
     public void consumePaymentSuccessNotifications(PaymentConfirmation paymentConfirmation) throws MessagingException {
         log.info(format("Consuming the message from payment-topic Topic:: %s", paymentConfirmation));
         notificationRepository.save(
@@ -44,7 +44,7 @@ public class NotificationConsumer {
         );
     }
 
-    @RabbitListener
+    @RabbitListener(queues = "orderConfirmation")
     public void consumeOrderConfirmationNotifications(OrderConfirmation orderConfirmation) throws MessagingException {
         log.info(format("Consuming the message from order-topic Topic:: %s", orderConfirmation));
         notificationRepository.save(

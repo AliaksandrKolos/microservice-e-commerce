@@ -6,12 +6,13 @@ import com.kolos.orderservice.web.client.customer.PurchaseResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class OrderConfirmation {
+public class OrderConfirmation implements Serializable {
 
     private String orderReference;
     private BigDecimal totalAmount;
