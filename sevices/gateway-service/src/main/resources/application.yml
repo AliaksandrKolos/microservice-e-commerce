@@ -5,6 +5,3 @@ spring:
     name: gateway-service
 
 
-logging:
-  level:
-    org.springframework.cloud.gateway: DEBUG
