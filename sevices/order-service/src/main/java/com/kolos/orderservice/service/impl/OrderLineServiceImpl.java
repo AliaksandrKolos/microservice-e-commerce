@@ -7,6 +7,7 @@ import com.kolos.orderservice.service.dto.OrderLineRequest;
 import com.kolos.orderservice.service.dto.OrderLineResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ public class OrderLineServiceImpl implements OrderLineService {
 
 
     @Override
+    @Transactional
     public Integer saveOrderLine(OrderLineRequest request) {
         var order = orderLineMapper.toOrderLine(request);
         return orderLineRepository.save(order).getId();
