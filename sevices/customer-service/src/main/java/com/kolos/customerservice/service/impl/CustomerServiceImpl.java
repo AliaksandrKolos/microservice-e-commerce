@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,12 +25,14 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
+    @Transactional
     public String createCustomer(CustomerRequest request) {
         var customer = customerRepository.save(customerMapper.toCustomer(request));
         return customer.getId();
     }
 
     @Override
+    @Transactional
     public void updateCustomer(CustomerRequest request) {
         var customer = customerRepository.findById(request.getId())
                 .orElseThrow(() -> new CustomerNotFoundException(
@@ -61,10 +64,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    @Transactional
     public void deleteCustomer(String customerId) {
         customerRepository.deleteById(customerId);
     }
-
 
 
 

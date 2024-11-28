@@ -11,6 +11,7 @@ import com.kolos.productservice.service.exception.ProductPurchaseException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -25,12 +26,14 @@ public class ProductServiceImpl implements ProductService {
     private final ProductMapper productMapper;
 
     @Override
+    @Transactional
     public Integer createProduct(ProductRequest request) {
         var product = productMapper.toProduct(request);
         return productRepository.save(product).getId();
     }
 
     @Override
+    @Transactional
     public List<ProductPurchaseResponse> purchaseProducts(List<ProductPurchaseRequest> request) {
         var productsIds = request.stream()
                 .map(ProductPurchaseRequest::getProductId)

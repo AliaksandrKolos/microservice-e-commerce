@@ -18,6 +18,7 @@ import com.kolos.orderservice.web.exception.BusinessException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,6 +37,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
+    @Transactional
     public Integer createOrder(OrderRequest request) {
         var customer = this.customerClient.findCustomerById(request.getCustomerId())
                 .orElseThrow(() -> new BusinessException("Cannot create order:: No customer exists with the provided ID"));
