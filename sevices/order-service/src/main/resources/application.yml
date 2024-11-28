@@ -3,3 +3,9 @@ spring:
     import: optional:configserver:http://localhost:8888
   application:
     name: order-service
+
+rabbitmq:
+  routing-key:
+    order-confirmation: order.confirmation
+  exchange:
+    direct: directExchange
